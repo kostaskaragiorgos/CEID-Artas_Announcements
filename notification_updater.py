@@ -41,17 +41,3 @@ for i in range(0,len(anakinosi)):
 
 
 
-
-
-#links=html.find(id="txtHint")
-
-#html.findAll('a', {'tr' : 'manga_img'})
-
-#grames = html.find_all('tr')
-
-#links = grames.find_all('a')
-
-
-
-
-# html.get_text() εμφανίζει μόνο το κείμενο από την σελίδα.
