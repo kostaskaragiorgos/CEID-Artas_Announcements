@@ -16,14 +16,14 @@ center = html.find_all('center')
 #		print (a)
 
 
-print ("\nΑναλυτικό print!\n")
+#print ("\nΑναλυτικό print!\n")
 
 # Δημιουργώ λίστες όπου θα κρατάω τα δεδομένα μου
 link_anakinosis = []
 anakinosi = []
 
-for line in center: # Για να διασχίσω όλη την λίστα..
-	for link in line.find_all('a'): # Σε κάθε <center>.. να βρήσω το <a> tag.
+for pos in center: # Για να διασχίσω όλη την λίστα..
+		link = pos.a # Σε κάθε <center>.. να βρήσω το <a> tag.
 		link_anakinosis.append( link.get('href') ) # Να παίρνω από το <a> tag το link μόνο.
 		anakinosi.append( link.get_text() ) # Να παίρνω από το <a> tag το κείμενο μόνο. ;)
 
