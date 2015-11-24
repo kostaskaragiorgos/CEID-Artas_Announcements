@@ -58,12 +58,12 @@ class Applet():
 	
 		self.ind = appindicator.Indicator.new(
 		"G-lts CEID-Artas Not-Up",
-		os.path.realpath("images/student.png"),
+		"/opt/ceidArtasIndicator/images/student.png",
 		appindicator.IndicatorCategory.APPLICATION_STATUS)
 		
 
 		self.ind.set_status (appindicator.IndicatorStatus.ACTIVE)
-		self.ind.set_attention_icon( os.path.realpath("images/student-alert.png") ) 
+		self.ind.set_attention_icon( "/opt/ceidArtasIndicator/images/student-alert.png" ) 
 		
 		
 		self.menu = Gtk.Menu()		
