@@ -17,5 +17,5 @@ sudo mv src images unistall.sh /opt/ceidArtasIndicator/
 
 # Τέλος για να προστεθεί το πρόγραμμα στα προγράμματα εκκίνησης, ούτως ώστε να ξεκινάει αυτόματα : 
 
-cp ciedArtas_Indicator.desktop ~/.config/autostart
+mv ciedArtas_Indicator.desktop ~/.config/autostart
 
