@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=python3 /opt/ceidArtasIndicator/src/AnnouncementsForCEID-Artas.py
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=True
+Name[el]=ciedArtas_Indicator
+Name=Not-Up for Τ.Ε.Ι.
+Comment[el]=Τ.Ε.Ι. Updater
+Comment=Τ.Ε.Ι. Updater
