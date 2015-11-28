@@ -19,7 +19,7 @@ sudo mv src images unistall.sh /opt/ceidArtasIndicator/
 
 mv ciedArtas.desktop ~/.config/autostart
 
-rm README.md
+rm README.md .gitignore
 
 python3 /opt/ceidArtasIndicator/src/AnnouncementsForCEID-Artas.py &
 
