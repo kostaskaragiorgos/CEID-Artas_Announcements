@@ -12,7 +12,7 @@ read -p "Password please : " pass
 stty echo
 printf '\n'
 
-sudo rm ~/.config/autostart/ciedArtas_Indicator.desktop
+sudo rm ~/.config/autostart/ciedArtas.desktop
 
 sudo rm -R /opt/ceidArtasIndicator
 
