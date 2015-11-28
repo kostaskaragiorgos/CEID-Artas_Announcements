@@ -7,10 +7,6 @@
 # Created by G-lts Team
 # Copyleft (ↄ)
 
-stty -echo
-read -p "Password please : " pass
-stty echo
-printf '\n'
 
 sudo mkdir /opt/ceidArtasIndicator
 sudo mv src images unistall.sh /opt/ceidArtasIndicator/
