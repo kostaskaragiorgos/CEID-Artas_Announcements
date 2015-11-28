@@ -15,7 +15,15 @@ printf '\n'
 sudo mkdir /opt/ceidArtasIndicator
 sudo mv src images unistall.sh /opt/ceidArtasIndicator/
 
-# Τέλος για να προστεθεί το πρόγραμμα στα προγράμματα εκκίνησης, ούτως ώστε να ξεκινάει αυτόματα : 
+# Για να προστεθεί το πρόγραμμα στα προγράμματα εκκίνησης, ούτως ώστε να ξεκινάει αυτόματα : 
 
-mv ciedArtas_Indicator.desktop ~/.config/autostart
+mv ciedArtas.desktop ~/.config/autostart
+
+rm README.md
+
+python3 /opt/ceidArtasIndicator/src/AnnouncementsForCEID-Artas.py &
+
+
+
+
 
