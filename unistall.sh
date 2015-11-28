@@ -7,13 +7,13 @@
 # Created by G-lts Team
 # Copyleft (ↄ)
 
-stty -echo
-read -p "Password please : " pass
-stty echo
-printf '\n'
 
 sudo rm ~/.config/autostart/ciedArtas.desktop
 
 sudo rm -R /opt/ceidArtasIndicator
+
+notify-send 'Announcements For CEID Artas' 'Η εφαρμογή απεγκαταστάθηκε επιτυχώς.' -i /usr/share/icons/gnome/48x48/actions/edit-delete.png
+paplay /usr/share/sounds/freedesktop/stereo/complete.oga
+
 
 
