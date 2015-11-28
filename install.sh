@@ -15,9 +15,17 @@ sudo mv src images unistall.sh /opt/ceidArtasIndicator/
 
 mv ciedArtas.desktop ~/.config/autostart
 
-rm README.md .gitignore
-
 python3 /opt/ceidArtasIndicator/src/AnnouncementsForCEID-Artas.py &
+
+
+notify-send 'Announcements For CEID Artas' 'Η εγκατάσταση ολοκληρώθηκε επιτυχώς. Για ότι χρειαστείτε ήμαστε δίπλα σας.\nEυχαριστούμε πολύ. :)' -i /usr/share/icons/gnome/48x48/emblems/emblem-default.png
+paplay /usr/share/sounds/freedesktop/stereo/complete.oga
+
+
+#rm README.md .gitignore
+# Για να διαγραφούν όλα τα αρχεία που κατέβασε ο χρήστης και είναι για την εγκατάταση :
+cd ..
+rm -R CEID-Artas_Not-Up-master
 
 
 
