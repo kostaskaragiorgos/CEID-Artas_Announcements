@@ -11,7 +11,7 @@
 sudo mkdir /opt/ceidArtasIndicator
 sudo mv src images unistall.sh /opt/ceidArtasIndicator/
 
-sudo chmod o+x /opt/ceidArtasIndicator/unistall.sh
+sudo chmod u+x /opt/ceidArtasIndicator/unistall.sh
 
 # Για να προστεθεί το πρόγραμμα στα προγράμματα εκκίνησης, ούτως ώστε να ξεκινάει αυτόματα : 
 
