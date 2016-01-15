@@ -17,6 +17,9 @@ sudo chmod u+x /opt/ceidArtasIndicator/unistall.sh
 
 mv ciedArtas.desktop ~/.config/autostart
 
+# Εγκατάταση βιβλιοθήκης "BeautifulSoup" :
+sudo apt-get install python3-bs4
+
 python3 /opt/ceidArtasIndicator/src/AnnouncementsForCEID-Artas.py &
 
 
@@ -26,8 +29,6 @@ paplay /usr/share/sounds/freedesktop/stereo/complete.oga
 cd ..
 rm -R CEID-Artas_Not-Up-master
 rm CEID-Artas_Not-Up-master.zip
-
-
 
 
 
