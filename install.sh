@@ -27,8 +27,8 @@ notify-send 'Announcements For CEID Artas' 'Η εγκατάσταση ολοκλ
 paplay /usr/share/sounds/freedesktop/stereo/complete.oga
 
 cd ..
-rm -R CEID-Artas_Not-Up-master
-rm CEID-Artas_Not-Up-master.zip
+rm -R CEID-Artas_Announcements-master
+rm CEID-Artas_Announcements-master.zip
 
 
 
