@@ -12,14 +12,14 @@ from bs4 import BeautifulSoup # Για το scapping της σελίδας.
 
 class DownloadDataFromSite() : 
 
-	# Οι δομές στις οπόίες θα κρατάω τα δεδομένα μου : 
+	# Οι δομές στις οποίες θα κρατάω τα δεδομένα μου : 
 	links_Of_Announcements = []
 	announcements = []
 
 
 	def __init__(self):
 		'''
-		Κατά την δημιουργεία του αντικειμένου δεν θα γίνεται τίποτα.
+		Κατά την δημιουργία του αντικειμένου δεν θα γίνεται τίποτα.
 		'''
 
 
@@ -54,17 +54,17 @@ class DownloadDataFromSite() :
 		Σε αυτή την μέθοδο, σε κάθε ένα από τα blocks κώδικα που έχω παίρνω :
 			1. & τον σύνδεσμο προς την ανακοίνωση
 			2. & την ανακοίνωση.
-		Γεμίζοντας τις λίστες του αντικοιμένου.
+		Γεμίζοντας τις λίστες του αντικειμένου.
 		'''
 
 		# Αρχικοποίηση ή επαναορισμός των λιστών ως άδειες ( για να μην έχω προβλήματα και στο refresh )
 		DownloadDataFromSite.links_Of_Announcements = []
 		DownloadDataFromSite.announcements = []
 
-		for td in self.tr: # Για κάθε ένα td ( που έχει μέσα και την ανακοίνωση )..
-			link = td.a # Παίρνω το <a> tag.
-			DownloadDataFromSite.links_Of_Announcements.append( link.get('href') ) # Παίρνω λοιπόν τον σύνδεσμο της εκάστοτε ανακοίνωσης 
-			DownloadDataFromSite.announcements.append( link.get_text().strip() ) # και το "κείμενο" της ανακοίνωσης αφάιρόντας τα περιτά κενά που μπορεί να υπάρξουν.
+		for td in self.tr :
+			link = td.a
+			DownloadDataFromSite.links_Of_Announcements.append( link.get('href') )
+			DownloadDataFromSite.announcements.append( link.get_text().strip() )
 
 
 		self.fixLinks();
@@ -75,15 +75,14 @@ class DownloadDataFromSite() :
 		'''
 		Σε αυτή την μέθοδο, σε κάθε ένα από τα blocks κώδικα που έχω παίρνω :
 			1. Μονάχα τον *σύνδεσμο* προς την ανακοίνωση
-		Γεμίζοντας την κατάλληλη λίστα του αντικοιμένου.
+		Γεμίζοντας την κατάλληλη λίστα του αντικειμένου.
 		'''
 
-		DownloadDataFromSite.links_Of_Announcements = [] # Αρχικοποίηση ή επαναορισμός της λίστας ως άδεια ( για να μην έχω προβλήματα και στο refresh )
+		DownloadDataFromSite.links_Of_Announcements = []
 
-		for td in self.tr: # Για κάθε ένα td ( που έχει μέσα και την ανακοίνωση )..
-			link = td.a # Παίρνω το <a> tag.
-			DownloadDataFromSite.links_Of_Announcements.append( link.get('href') ) # Παίρνω λοιπόν τον σύνδεσμο της εκάστοτε ανακοίνωσης 
-			# εδώ στην από πάνω γραμμή έχω ένα error, αλλά δε ξέρω το λόγο.. :/ ( συμβαίνει μερικές φορές μόνο... )
+		for td in self.tr :
+			link = td.a
+			DownloadDataFromSite.links_Of_Announcements.append( link.get('href') )
 
 		self.fixLinks();
 
@@ -93,14 +92,14 @@ class DownloadDataFromSite() :
 		'''
 		Σε αυτή την μέθοδο, σε κάθε ένα από τα blocks κώδικα που έχω παίρνω :
 			1. Μονάχα την *ανακοίνωση*.
-		Γεμίζοντας την κατάλληλη λίστα του αντικοιμένου.
+		Γεμίζοντας την κατάλληλη λίστα του αντικειμένου.
 		'''
 
-		DownloadDataFromSite.announcements = [] # Αρχικοποίηση ή επαναορισμός της λίστας ως άδεια ( για να μην έχω προβλήματα και στο refresh )
+		DownloadDataFromSite.announcements = []
 
-		for td in self.tr: # Για κάθε ένα td ( που έχει μέσα και την ανακοίνωση )..
-			link = td.a # Παίρνω το <a> tag.
-			DownloadDataFromSite.announcements.append( link.get_text().strip() ) # και το "κείμενο" της ανακοίνωσης αφάιρόντας τα περιτά κενά που μπορεί να υπάρξουν.
+		for td in self.tr :
+			link = td.a
+			DownloadDataFromSite.announcements.append( link.get_text().strip() )
 
 
 
@@ -116,7 +115,11 @@ class DownloadDataFromSite() :
 
 
 	def fixLinks(self):
-		# Για να προσθέσω μπροστά από κάθε link και το "https://www.ce.teiep.gr/", ώστε να είναι σωστό το link.
+		'''
+		Διορθώνει τους συνδέσμους προς τις ανακοινώσεις.
+		
+		Για να προσθέσω μπροστά από κάθε link και το "https://www.ce.teiep.gr/", ώστε να είναι σωστό το link.
+		'''
 		for link in range( 0 ,len( DownloadDataFromSite.links_Of_Announcements ) ) : 
 			DownloadDataFromSite.links_Of_Announcements[link] = "https://www.ce.teiep.gr/" + DownloadDataFromSite.links_Of_Announcements[link]
 
