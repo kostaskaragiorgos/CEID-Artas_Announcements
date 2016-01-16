@@ -17,8 +17,11 @@ sudo chmod u+x /opt/ceidArtasIndicator/unistall.sh
 
 mv ciedArtas.desktop ~/.config/autostart
 
-# Εγκατάταση βιβλιοθήκης "BeautifulSoup" :
+# Εγκατάσταση απαραίτητων βιβλιοθηκών :
 sudo apt-get install python3-bs4
+sudo apt-get install python-lxml
+sudo apt-get install python3-lxml
+sudo apt-get install python3 libgtk-3-0 python-appindicator
 
 python3 /opt/ceidArtasIndicator/src/AnnouncementsForCEID-Artas.py &
 
