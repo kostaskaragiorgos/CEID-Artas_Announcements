@@ -17,7 +17,7 @@ sudo chmod u+x /opt/ceidArtasIndicator/unistall.sh
 
 mv ciedArtas.desktop ~/.config/autostart
 
-# Εγκατάσταση απαραίτητων βιβλιοθηκών :
+# Εγκατάσταση απαιτούμενων βιβλιοθηκών :
 sudo apt-get install python3-bs4
 sudo apt-get install python-lxml
 sudo apt-get install python3-lxml
