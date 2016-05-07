@@ -10,9 +10,9 @@ from bs4 import BeautifulSoup # Για το scapping της σελίδας.
 
 
 
-class DownloadDataFromSite() : 
+class DownloadDataFromSiteCEID() : 
 
-	# Οι δομές στις οποίες θα κρατάω τα δεδομένα μου : 
+	# Οι δομές στις οπόίες θα κρατάω τα δεδομένα μου : 
 	links_Of_Announcements = []
 	announcements = []
 
@@ -24,12 +24,13 @@ class DownloadDataFromSite() :
 
 
 
+
 	def downloadPage(self) :
 		'''
 		Η μέθοδος αυτή έχει τον πολύ βασικό σκοπό που αφορά το κατέβασμα των ανακοινώσεων.
 			1. "Κοιτάει"& "κατεβάζει" την σελίδα των ανακοινώσεων.
 			2. Παίρνει τα "blocks" κώδικα που μας ενδιαφέρουν.
-			3. Τέλος κρατάει μια λίστα αντικειμένου ( "self.tr" ) στην οποία η κάθε θέση της περιέχει ακριβώς *τις* πληροφορίες που θέλουμε.
+			3. Τέλος κρατάει μια λίστα αντικειμένου ( "self.all_aTags" ) στην οποία η κάθε θέση της περιέχει ακριβώς *τις* πληροφορίες που θέλουμε.
 		'''
 
 		try :
@@ -40,12 +41,12 @@ class DownloadDataFromSite() :
 
 		html = BeautifulSoup(allPage)
 
-		table = html.findAll('table',  {'border' : '0'} , {'width' : '100%'} )
-		table = table[2]
+		# Mε την παρακάτω μοναδική εντολή παίρνω ότι είναι μέσα στο "<table class="table table-striped">" - εκεί βρίσκονται οι ανακοινώσεις  
+		table = html.find('table',  {'class' : 'table table-striped'}  )
 
-		self.tr = []
-		self.tr = table.findAll("tr")
-		self.tr.pop(0)
+		# Με την παρακάτω εντολή παίρνω ότι a tag υπάρχει εκεί μέσα. :)
+		self.all_aTags = table.findAll('a') # Έτσι παίρνω κατευθείαν όλα τα a tags που αφορούν τις ανακοινώσεις και μόνο.
+
 
 
 
@@ -58,16 +59,16 @@ class DownloadDataFromSite() :
 		'''
 
 		# Αρχικοποίηση ή επαναορισμός των λιστών ως άδειες ( για να μην έχω προβλήματα και στο refresh )
-		DownloadDataFromSite.links_Of_Announcements = []
-		DownloadDataFromSite.announcements = []
+		DownloadDataFromSiteCEID.links_Of_Announcements = []
+		DownloadDataFromSiteCEID.announcements = []
 
-		for td in self.tr :
-			link = td.a
-			DownloadDataFromSite.links_Of_Announcements.append( link.get('href') )
-			DownloadDataFromSite.announcements.append( link.get_text().strip() )
 
+		for aTag in self.all_aTags: # Για κάθε ένα a tag
+			DownloadDataFromSiteCEID.links_Of_Announcements.append( aTag.get('href') ) # Παίρνω λοιπόν τον σύνδεσμο της εκάστοτε ανακοίνωσης 
+			DownloadDataFromSiteCEID.announcements.append( aTag.get_text().strip() ) # και το "κείμενο" (τίτλο) της ανακοίνωσης αφάιρόντας τα περιττά κενά που μπορεί να υπάρξουν.
 
 		self.fixLinks();
+
 
 
 
@@ -78,13 +79,13 @@ class DownloadDataFromSite() :
 		Γεμίζοντας την κατάλληλη λίστα του αντικειμένου.
 		'''
 
-		DownloadDataFromSite.links_Of_Announcements = []
+		DownloadDataFromSiteCEID.links_Of_Announcements = []
 
-		for td in self.tr :
-			link = td.a
-			DownloadDataFromSite.links_Of_Announcements.append( link.get('href') )
+		for aTag in self.all_aTags:
+			DownloadDataFromSiteCEID.links_Of_Announcements.append( aTag.get('href') )
 
 		self.fixLinks();
+
 
 
 
@@ -95,16 +96,17 @@ class DownloadDataFromSite() :
 		Γεμίζοντας την κατάλληλη λίστα του αντικειμένου.
 		'''
 
-		DownloadDataFromSite.announcements = []
+		DownloadDataFromSiteCEID.announcements = []
 
-		for td in self.tr :
-			link = td.a
-			DownloadDataFromSite.announcements.append( link.get_text().strip() )
+		for aTag in self.all_aTags:
+			DownloadDataFromSiteCEID.announcements.append( aTag.get_text().strip() )
+
 
 
 
 	def refreshPage(self) :
 		self.downloadPage_and_FindAll();
+
 
 
 
@@ -114,26 +116,34 @@ class DownloadDataFromSite() :
 
 
 
+
 	def fixLinks(self):
 		'''
 		Διορθώνει τους συνδέσμους προς τις ανακοινώσεις.
 		
 		Για να προσθέσω μπροστά από κάθε link και το "https://www.ce.teiep.gr/", ώστε να είναι σωστό το link.
 		'''
-		for link in range( 0 ,len( DownloadDataFromSite.links_Of_Announcements ) ) : 
-			DownloadDataFromSite.links_Of_Announcements[link] = "https://www.ce.teiep.gr/" + DownloadDataFromSite.links_Of_Announcements[link]
+		# Για να προσθέσω μπροστά από κάθε link και το "https://www.ce.teiep.gr/", ώστε να είναι σωστό το link.
+		for link in range( 0 ,len( DownloadDataFromSiteCEID.links_Of_Announcements ) ) : 
+			DownloadDataFromSiteCEID.links_Of_Announcements[link] = "https://www.ce.teiep.gr/" + DownloadDataFromSiteCEID.links_Of_Announcements[link]
+
 
 
 
 	def get_Last10_Announcements(self):
-		return DownloadDataFromSite.announcements[:10];
+		return DownloadDataFromSiteCEID.announcements[:10];
+
 
 
 
 	def get_Last10_Links_by_Announcements(self):
-		return DownloadDataFromSite.links_Of_Announcements[:10];
+		return DownloadDataFromSiteCEID.links_Of_Announcements[:10];
 
 
 
 
-__version__ = '1.0'
+
+
+__version__ = '2.0'
+
+
